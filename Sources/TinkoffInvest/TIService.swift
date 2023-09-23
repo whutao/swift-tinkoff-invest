@@ -4,7 +4,7 @@
 
 import Combine
 import CombineGRPC
-import Extensions
+import _Extensions
 import Foundation
 import IdentifiedCollections
 import TinkoffInvestSDK
