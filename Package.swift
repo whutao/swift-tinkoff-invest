@@ -26,10 +26,10 @@ let package = Package(
 		)
 	],
 	targets: [
-		.target(name: "Extensions"),
+		.target(name: "_Extensions"),
 		.target(name: "TinkoffInvest", dependencies: [
 			.product(name: "CombineGRPC", package: "grpc-swift-combine"),
-			.target(name: "Extensions"),
+			.target(name: "_Extensions"),
 			.product(name: "IdentifiedCollections", package: "swift-identified-collections"),
 			.product(name: "SwiftProtobuf", package: "swift-protobuf"),
 			.product(name: "TinkoffInvestSDK", package: "TinkoffInvestSwiftSDK")
