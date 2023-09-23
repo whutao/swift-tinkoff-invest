@@ -1,9 +1,24 @@
-.DS_Store
-/.build
-/Packages
-/*.xcodeproj
+## User settings
 xcuserdata/
-DerivedData/
-.swiftpm/config/registries.json
-.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
-.netrc
+
+## MacOS files
+.DS_Store
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Fastlane
+.DerivedData/
+fastlane/report.xml
+fastlane/README.md
+fastlane/Preview.html
+fastlane/linter_output
+fastlane/screenshot_output
+fastlane/ui_test_output
+fastlane/unit_test_output
+
+# Other
+*.cer
+*.mobileprovision

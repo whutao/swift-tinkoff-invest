@@ -1,28 +1,38 @@
 // swift-tools-version: 5.8
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
-    name: "swift-tinkoff-invest",
-    products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "swift-tinkoff-invest",
-            targets: ["swift-tinkoff-invest"]),
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "swift-tinkoff-invest",
-            dependencies: []),
-        .testTarget(
-            name: "swift-tinkoff-investTests",
-            dependencies: ["swift-tinkoff-invest"]),
-    ]
+	name: "swift-tinkoff-invest",
+	platforms: [.iOS(.v15), .macOS(.v11)],
+	products: [
+		.library(name: "TinkoffInvest", targets: ["TinkoffInvest"])
+	],
+	dependencies: [
+		.package(
+			url: "https://github.com/pointfreeco/swift-identified-collections.git",
+			from: Version(1, 0, 0)
+		),
+		.package(
+			url: "https://github.com/whutao/TinkoffInvestSwiftSDK.git",
+			branch: "main"
+		),
+		.package(
+			url: "https://github.com/vyshane/grpc-swift-combine.git",
+			from: Version(1, 1, 0)
+		),
+		.package(
+			url: "https://github.com/apple/swift-protobuf.git",
+			from: Version(1, 23, 0)
+		)
+	],
+	targets: [
+		.target(name: "Extensions"),
+		.target(name: "TinkoffInvest", dependencies: [
+			.product(name: "CombineGRPC", package: "grpc-swift-combine"),
+			.target(name: "Extensions"),
+			.product(name: "IdentifiedCollections", package: "swift-identified-collections"),
+			.product(name: "SwiftProtobuf", package: "swift-protobuf"),
+			.product(name: "TinkoffInvestSDK", package: "TinkoffInvestSwiftSDK")
+		])
+	]
 )
