@@ -7,7 +7,6 @@ import CombineGRPC
 import Extensions
 import Foundation
 import IdentifiedCollections
-import Models
 import TinkoffInvestSDK
 
 // MARK: - Service
