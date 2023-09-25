@@ -132,7 +132,30 @@ extension TIService {
 			.mapError(TIError.init)
 			.async()
 	}
+	
+	private func share(parameters: InstrumentParameters) async throws -> TIShare {
+		return try await tinkoffInvest.instrumentsService.getShare(params: parameters)
+			.subscribe(on: queue)
+			.mapError(TIError.init)
+			.tryMap({ response in
+				guard let domainResponse = TIShare(response: response) else {
+					throw TIError.emptyOrCorruptedResponse(
+						context: "Cannot convert \(ShareResponse.self) into \(TIShare.self)."
+					)
+				}
+				return domainResponse
+			})
+			.async()
+	}
+	
+	public func share(figi: TIFIGI) async throws -> TIShare {
+		return try await share(parameters: .init(idType: .figi, id: figi))
+	}
 
+	public func share(ticker: TITicker) async throws -> TIShare {
+		return try await share(parameters: .init(idType: .ticker, id: ticker))
+	}
+	
 	// MARK: Portfolio service
 
 	public func portfolioInfo(accountId: TIAccountID) async throws -> TIPortfolioInfo {
