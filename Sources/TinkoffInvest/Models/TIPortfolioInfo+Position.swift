@@ -76,6 +76,13 @@ extension TIPortfolioInfo {
 			guard let currency = TIMoneyCurrency(isoCode: response.currentPrice.currency) else {
 				return nil
 			}
+			let accumulatedCouponIncome: TIAmount? = {
+				if response.hasCurrentNkd {
+					return TIAmount(response.currentNkd.asMoneyAmount.value)
+				} else {
+					return nil
+				}
+			}()
 			self.init(
 				figi: response.figi,
 				kind: kind,
@@ -83,7 +90,7 @@ extension TIPortfolioInfo {
 				currency: currency,
 				currentPrice: .init(response.currentPrice.asMoneyAmount.value),
 				averagePrice: .init(response.averagePositionPrice.asMoneyAmount.value),
-				accumulatedCouponIncome: .init(response.currentNkd.asMoneyAmount.value),
+				accumulatedCouponIncome: accumulatedCouponIncome,
 				expectedYield: .init(response.expectedYield),
 				isBlockedOnExchange: response.blocked
 			)
