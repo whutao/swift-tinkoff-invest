@@ -83,7 +83,7 @@ extension TIPortfolioInfo {
 				currency: currency,
 				currentPrice: .init(response.currentPrice.asMoneyAmount.value),
 				averagePrice: .init(response.averagePositionPrice.asMoneyAmount.value),
-				accumulatedCouponIncome: .init(response.averagePositionPrice.asMoneyAmount.value),
+				accumulatedCouponIncome: .init(response.currentNkd.asMoneyAmount.value),
 				expectedYield: .init(response.expectedYield),
 				isBlockedOnExchange: response.blocked
 			)
