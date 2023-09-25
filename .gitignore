@@ -22,3 +22,6 @@ fastlane/unit_test_output
 # Other
 *.cer
 *.mobileprovision
+
+# Packages
+Package.resolved

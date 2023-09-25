@@ -16,6 +16,8 @@ public struct TIAccountInfo: Equatable, Identifiable, Sendable {
 	public let name: String
 
 	public let openDate: Date
+	
+	public let closeDate: Date?
 
 	public let kind: TIAccountKind
 
@@ -25,11 +27,13 @@ public struct TIAccountInfo: Equatable, Identifiable, Sendable {
 		id: TIAccountID,
 		name: String,
 		openDate: Date,
+		closeDate: Date?,
 		kind: TIAccountKind
 	) {
 		self.id = id
 		self.name = name
 		self.openDate = openDate
+		self.closeDate = closeDate
 		self.kind = kind
 	}
 
@@ -44,6 +48,7 @@ public struct TIAccountInfo: Equatable, Identifiable, Sendable {
 			id: response.id,
 			name: response.name,
 			openDate: openDate,
+			closeDate: .init(response.closedDate),
 			kind: kind
 		)
 	}
