@@ -12,7 +12,7 @@ public struct TIBondCoupon: Equatable, Sendable, Identifiable {
 	// MARK: Exposed properties
 
 	public var id: String {
-		return figi
+		return figi + order.description
 	}
 
 	public let figi: TIFIGI
@@ -81,15 +81,15 @@ public struct TIBondCoupon: Equatable, Sendable, Identifiable {
 
 extension TIBondCoupon {
 
-	public enum Kind: Equatable, Sendable {
+	public enum Kind: UInt, Equatable, Sendable {
 
 		// MARK: Case
 
-		case constant
+		case constant = 0
 
-		case floating
+		case floating = 1
 
-		case other
+		case other = 100
 
 		// MARK: Exposed properties
 
