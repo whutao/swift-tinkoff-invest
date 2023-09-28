@@ -20,6 +20,8 @@ public struct TIBond: Equatable, Sendable, Identifiable {
 	public let ticker: TITicker
 
 	public let name: String
+	
+	public let lot: UInt
 
 	public let currency: TIMoneyCurrency
 
@@ -58,6 +60,7 @@ public struct TIBond: Equatable, Sendable, Identifiable {
 	public init(
 		figi: TIFIGI,
 		ticker: TITicker,
+		lot: UInt,
 		name: String,
 		economySector: String,
 		currency: TIMoneyCurrency,
@@ -79,6 +82,7 @@ public struct TIBond: Equatable, Sendable, Identifiable {
 		self.figi = figi
 		self.ticker = ticker
 		self.name = name
+		self.lot = lot
 		self.economySector = economySector
 		self.currency = currency
 		self.initialNominal = initialNominal
@@ -114,6 +118,7 @@ public struct TIBond: Equatable, Sendable, Identifiable {
 		self.init(
 			figi: instrument.figi,
 			ticker: instrument.ticker,
+			lot: UInt(instrument.lot),
 			name: instrument.name,
 			economySector: instrument.sector,
 			currency: currency,
